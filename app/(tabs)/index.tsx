@@ -1,40 +1,112 @@
+import { ActionSheet } from '@/components/action-sheet';
 import { PostCard } from '@/components/post-card';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { usePost } from '@/context/PostContext';
+import { Ionicons } from '@expo/vector-icons'; // Đảm bảo đã cài đặt thư viện icon
+import { useRouter } from 'expo-router';
+import React, { useState } from 'react';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function CommunityScreen() {
+  const { posts, toggleLike } = usePost();
+  const [actionSheetVisible, setActionSheetVisible] = useState(false);
+  const router = useRouter();
+
   return (
-    <ScrollView style={styles.container}>
+    <View style={{ flex: 1 }}>
+      {/* HEADER CẬP NHẬT */}
       <View style={styles.headerSection}>
-        <Text style={styles.title}>Cộng đồng chia sẻ</Text>
-        <Text style={styles.subtitle}>Cùng nhau vượt qua áp lực</Text>
+        <View style={styles.headerTop}>
+          <View>
+            <Text style={styles.title}>Cộng đồng chia sẻ</Text>
+            <Text style={styles.subtitle}>Chia sẻ và kết nối cùng mọi người</Text>
+          </View>
+
+          <View style={styles.headerActions}>
+            <TouchableOpacity
+              style={styles.iconButton}
+              onPress={() => router.push('/create-post')}
+            >
+              <Ionicons name="add" size={24} color="#1A1A1A" />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[styles.iconButton, { borderHorizontal: 0 }]}
+              onPress={() => {/* Logic tìm kiếm */ }}
+            >
+              <Ionicons name="search-outline" size={22} color="#1A1A1A" />
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
 
-      <PostCard
-        user={{
-          name: 'Người dùng ẩn danh 001',
-          avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=1'
-        }}
-        time="20 giờ trước"
-        content="Có những ngày đến trường mà lòng nặng trĩu, không hẳn vì bài khó hay điểm kém, mà vì cảm giác mình luôn phải cố gắng để không bị bỏ lại phía sau..."
-        imageUri="https://images.unsplash.com/photo-1527137342181-19aab11a8ee8?q=80&w=1000"
-      />
+      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+        {/* DANH SÁCH BÀI VIẾT GIỮ NGUYÊN */}
+        {posts.map(post => (
+          <PostCard
+            key={post.id}
+            {...post}
+            onLike={() => toggleLike(post.id)}
+            onPressMenu={() => setActionSheetVisible(true)}
+            onPressDetail={() =>
+              router.push({
+                pathname: '/post-detail',
+                params: { postId: post.id }
+              })
+            }
+          />
+        ))}
+      </ScrollView>
 
-      <PostCard
-        user={{
-          name: 'Người dùng ẩn danh 002',
-          avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=2'
-        }}
-        time="1 ngày trước"
-        content="Áp lực đại học không ồn ào, nhưng âm ỉ và kéo dài. Những đêm làm bài đến khuya, cảm giác hoang mang không biết mình chọn đúng đường không..."
-        imageUri="https://images.unsplash.com/photo-1499209974431-9dac3adaf471?q=80&w=1000"
+      <ActionSheet
+        visible={actionSheetVisible}
+        onClose={() => setActionSheetVisible(false)}
       />
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#F0F2F5' },
-  headerSection: { padding: 20, backgroundColor: '#fff', marginBottom: 5 },
-  title: { fontSize: 22, fontWeight: 'bold', fontFamily: 'Inter' },
-  subtitle: { fontSize: 14, color: '#666', fontFamily: 'Inter' }
+  container: {
+    flex: 1,
+    backgroundColor: '#F8F9FA'
+  },
+  headerSection: {
+    paddingHorizontal: 20,
+    paddingTop: 50, // Điều chỉnh theo tai thỏ/status bar của thiết bị
+    paddingBottom: 15,
+    backgroundColor: '#fff',
+    borderBottomWidth: 0.5,
+    borderBottomColor: '#F2F2F2'
+  },
+  headerTop: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  headerActions: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  iconButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 12, // Bo góc như trong ảnh mẫu
+    borderWidth: 1,
+    borderColor: '#E5E5EA',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 10
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: '700',
+    fontFamily: 'Inter',
+    color: '#1A1A1A'
+  },
+  subtitle: {
+    fontSize: 14,
+    color: '#8E8E93',
+    fontFamily: 'Inter',
+    marginTop: 2
+  }
 });

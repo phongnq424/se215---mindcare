@@ -7,7 +7,7 @@ export default function TabLayout() {
     <Tabs screenOptions={{
       tabBarActiveTintColor: '#6366f1', // Màu tím xanh nhẹ nhàng
       tabBarStyle: { height: 60, paddingBottom: 10 },
-      headerTitleStyle: { fontFamily: 'Inter', fontWeight: '600' },
+      headerShown: false
     }}>
       <Tabs.Screen
         name="index"
