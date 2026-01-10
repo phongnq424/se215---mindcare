@@ -1,98 +1,40 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { PostCard } from '@/components/post-card';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
-
-export default function HomeScreen() {
+export default function CommunityScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+    <ScrollView style={styles.container}>
+      <View style={styles.headerSection}>
+        <Text style={styles.title}>Cộng đồng chia sẻ</Text>
+        <Text style={styles.subtitle}>Cùng nhau vượt qua áp lực</Text>
+      </View>
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+      <PostCard
+        user={{
+          name: 'Người dùng ẩn danh 001',
+          avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=1'
+        }}
+        time="20 giờ trước"
+        content="Có những ngày đến trường mà lòng nặng trĩu, không hẳn vì bài khó hay điểm kém, mà vì cảm giác mình luôn phải cố gắng để không bị bỏ lại phía sau..."
+        imageUri="https://images.unsplash.com/photo-1527137342181-19aab11a8ee8?q=80&w=1000"
+      />
+
+      <PostCard
+        user={{
+          name: 'Người dùng ẩn danh 002',
+          avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=2'
+        }}
+        time="1 ngày trước"
+        content="Áp lực đại học không ồn ào, nhưng âm ỉ và kéo dài. Những đêm làm bài đến khuya, cảm giác hoang mang không biết mình chọn đúng đường không..."
+        imageUri="https://images.unsplash.com/photo-1499209974431-9dac3adaf471?q=80&w=1000"
+      />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
+  container: { flex: 1, backgroundColor: '#F0F2F5' },
+  headerSection: { padding: 20, backgroundColor: '#fff', marginBottom: 5 },
+  title: { fontSize: 22, fontWeight: 'bold', fontFamily: 'Inter' },
+  subtitle: { fontSize: 14, color: '#666', fontFamily: 'Inter' }
 });
