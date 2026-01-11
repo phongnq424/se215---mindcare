@@ -6,6 +6,19 @@ import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
+interface Post {
+  id: string; // hoặc number tùy vào dữ liệu của bạn
+  title: string;
+  author: string;
+  avatar: string;
+  image: any;
+  likes: number;
+  comments: number;
+  isLiked: boolean;
+  time: string;
+  // Thêm các thuộc tính khác nếu PostCard của bạn cần
+}
+
 export default function CommunityScreen() {
   const { posts, toggleLike } = usePost();
   const [actionSheetVisible, setActionSheetVisible] = useState(false);
@@ -30,7 +43,7 @@ export default function CommunityScreen() {
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={[styles.iconButton, { borderHorizontal: 0 }]}
+              style={[styles.iconButton, {}]}
               onPress={() => router.push('/search-post')}
             >
               <Ionicons name="search-outline" size={22} color="#1A1A1A" />
@@ -41,7 +54,7 @@ export default function CommunityScreen() {
 
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         {/* DANH SÁCH BÀI VIẾT GIỮ NGUYÊN */}
-        {posts.map(post => (
+        {posts.map((post: Post) => (
           <PostCard
             key={post.id}
             {...post}

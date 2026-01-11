@@ -234,6 +234,12 @@ const styles = StyleSheet.create({
         fontFamily: 'Inter',
         marginBottom: 8
     },
+    timeLabels: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 8
+    },
     progressBarBg: {
         width: '100%',
         height: 4,

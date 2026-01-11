@@ -85,7 +85,7 @@ export default function LibraryScreen() {
                         <Text style={styles.dailyBtnText}>PlayList</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.dailyBtn}>
+                    <TouchableOpacity style={styles.dailyBtn} onPress={() => router.push('/video-list')}>
                         <Ionicons name="list-outline" size={20} color="#8E8E93" style={{ marginRight: 8 }} />
                         <Text style={styles.dailyBtnText}>Video</Text>
                     </TouchableOpacity>
@@ -96,13 +96,13 @@ export default function LibraryScreen() {
             <View style={styles.section}>
                 <View style={styles.sectionHeader}>
                     <Text style={styles.sectionTitle}>Bạn đã thực sự hiểu về bản thân?</Text>
-                    <TouchableOpacity onPress={() => { }}>
+                    <TouchableOpacity onPress={() => { router.push('/test-list') }}>
                         <Text style={styles.seeAllText}>Xem tất cả</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.grid}>
                     {testsData.map(test => (
-                        <TouchableOpacity key={test.id} style={styles.gridItem} activeOpacity={0.7}>
+                        <TouchableOpacity key={test.id} style={styles.gridItem} activeOpacity={0.7} onPress={() => router.push('/test-detail')}>
                             <Image source={test.image} style={styles.gridImage} />
                             <Text style={styles.gridTitle}>{test.title}</Text>
                         </TouchableOpacity>

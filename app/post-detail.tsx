@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         borderBottomWidth: 0.5,
         borderBottomColor: '#EAEAEA',
-        height: 52
+        height: 60
     },
 
     userInfoHeader: { flexDirection: 'row', marginLeft: 12, alignItems: 'center' },

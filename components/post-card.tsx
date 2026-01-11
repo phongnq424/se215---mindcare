@@ -120,7 +120,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         borderTopWidth: 0.5,
-        borderTopColor: '#F2F2F2'
+        borderTopColor: '#F2F2F2',
+        paddingTop: 12,
+        marginTop: 4,
     },
     statsGroup: { flexDirection: 'row', alignItems: 'center' },
     statItem: {
