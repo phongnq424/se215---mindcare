@@ -31,7 +31,7 @@ export default function CommunityScreen() {
 
             <TouchableOpacity
               style={[styles.iconButton, { borderHorizontal: 0 }]}
-              onPress={() => {/* Logic tìm kiếm */ }}
+              onPress={() => router.push('/search-post')}
             >
               <Ionicons name="search-outline" size={22} color="#1A1A1A" />
             </TouchableOpacity>
@@ -72,9 +72,9 @@ const styles = StyleSheet.create({
   },
   headerSection: {
     paddingHorizontal: 20,
-    paddingTop: 50, // Điều chỉnh theo tai thỏ/status bar của thiết bị
-    paddingBottom: 15,
     backgroundColor: '#fff',
+    paddingTop: 15, // Tăng thêm một chút cho thoáng
+    paddingBottom: 15,
     borderBottomWidth: 0.5,
     borderBottomColor: '#F2F2F2'
   },
@@ -107,6 +107,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#8E8E93',
     fontFamily: 'Inter',
-    marginTop: 2
+    marginTop: 4
   }
 });

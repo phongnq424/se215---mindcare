@@ -8,13 +8,13 @@ export function PostProvider({ children }: any) {
             id: '1',
             user: {
                 name: 'Người dùng ẩn danh 001',
-                avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=1'
+                avatar: 'https://api.dicebear.com/7.x/avataaars/png?seed=1'
             },
             time: '20 giờ trước',
             content:
                 'Có những ngày đến trường mà lòng nặng trĩu, không hẳn vì bài khó hay điểm kém, mà vì cảm giác mình luôn phải cố gắng để không bị bỏ lại phía sau. Nhìn bạn bè học tốt, được khen ngợi, đôi khi tự hỏi liệu mình có đang chậm hơn người khác quá không. Áp lực không chỉ đến từ sách vở, mà còn từ kỳ vọng của gia đình, của thầy cô, và cả từ chính bản thân. Nhiều lúc chỉ muốn được nói rằng mình mệt, nhưng lại sợ bị cho là yếu đuối. Ước gì việc học không chỉ là điểm số, mà còn là hành trình để hiểu và tin vào chính mình nhiều hơn.',
             imageUri:
-                'https://images.unsplash.com/photo-1527137342181-19aab11a8ee8?q=80&w=1000',
+                'https://i.pinimg.com/736x/7e/d6/2a/7ed62a80017812c5550ddeb9724401ed.jpg',
             liked: true,
             likeCount: 200,
             comments: 15,
@@ -24,7 +24,7 @@ export function PostProvider({ children }: any) {
             id: '2',
             user: {
                 name: 'Người dùng ẩn danh 002',
-                avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=2'
+                avatar: 'https://api.dicebear.com/7.x/avataaars/png?seed=2'
             },
             time: '1 ngày trước',
             content:

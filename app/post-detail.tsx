@@ -5,16 +5,17 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import React from 'react';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
+
 const COMMENTS_DATA = [
     {
         id: '1',
-        user: { name: 'Lan', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=lan' },
+        user: { name: 'Lan', avatar: 'https://api.dicebear.com/7.x/avataaars/png?seed=lan' },
         content: 'Mình đọc mà thấy giống mình quá...',
         time: '1 giờ trước',
         replies: [
             {
                 id: '1-1',
-                user: { name: 'Người dùng ẩn danh 010', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=010' },
+                user: { name: 'Người dùng ẩn danh 010', avatar: 'https://api.dicebear.com/7.x/avataaars/png?seed=010' },
                 content: 'Áp lực nhất là khi mọi người nghĩ mình ổn...',
                 time: '1 giờ trước'
             }
@@ -52,7 +53,10 @@ export default function PostDetailScreen() {
                     <Text style={styles.fullText}>{post.content}</Text>
 
                     {post.imageUri && (
-                        <Image source={{ uri: post.imageUri }} style={styles.mainImage} />
+                        <Image
+                            source={typeof post.imageUri === 'string' ? { uri: post.imageUri } : post.imageUri}
+                            style={styles.mainImage} // Sử dụng style đã khai báo ở dưới cho sạch
+                        />
                     )}
                 </View>
 
@@ -94,7 +98,7 @@ export default function PostDetailScreen() {
             {/* Input bar */}
             <View style={styles.inputBar}>
                 <Image
-                    source={{ uri: 'https://api.dicebear.com/7.x/avataaars/svg?seed=me' }}
+                    source={{ uri: 'https://api.dicebear.com/7.x/avataaars/png?seed=me' }}
                     style={styles.inputAvatar}
                 />
                 <View style={styles.textInputPlaceholder}>
@@ -113,10 +117,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: 16,
-        paddingTop: 60,
-        paddingBottom: 12,
         borderBottomWidth: 0.5,
-        borderBottomColor: '#F2F2F2'
+        borderBottomColor: '#EAEAEA',
+        height: 52
     },
 
     userInfoHeader: { flexDirection: 'row', marginLeft: 12, alignItems: 'center' },
@@ -185,7 +188,6 @@ const styles = StyleSheet.create({
         padding: 12,
         borderTopWidth: 0.5,
         borderTopColor: '#F2F2F2',
-        paddingBottom: 30
     },
 
     inputAvatar: { width: 30, height: 30, borderRadius: 15 },
