@@ -98,7 +98,7 @@ export default function TestDetailScreen() {
                     <Text style={styles.btnSecondaryText}>Quay lại</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.btnPrimary}>
+                <TouchableOpacity style={styles.btnPrimary} onPress={() => router.push('/result-test')}>
                     <Text style={styles.btnPrimaryText}>Tiếp theo</Text>
                     <Ionicons name="arrow-forward" size={18} color="#fff" style={{ marginLeft: 6 }} />
                 </TouchableOpacity>
